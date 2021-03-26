@@ -28,8 +28,8 @@ class UserUpdate extends Component
      */
     public function showUser($user)
     {
-        $this->title = $user['name'];
-        $this->description = $user['email'];
+        $this->name = $user['name'];
+        $this->email = $user['email'];
         $this->userId = $user['id'];
     }
     /**
@@ -40,7 +40,7 @@ class UserUpdate extends Component
     {
         $this->validate([
             'name' => 'required',
-            'email' => 'required|min:5',
+            'email' => 'required|email|unique:users|min:5',
         ]);
         if ($this->userId) {
             $user = User::findOrFail($this->userId);

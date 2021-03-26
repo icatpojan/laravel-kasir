@@ -24,7 +24,7 @@ class UserCreate extends Component
     {
         $this->validate([
             'name' => 'required|max:8',
-            'email' => 'required|min:5',
+            'email' => 'required|email|unique:users|min:5',
         ]);
         $user = User::create([
             'name' => $this->name,
@@ -39,7 +39,7 @@ class UserCreate extends Component
      */
     public function resetInput()
     {
-        $this->user = null;
+        $this->name = null;
         $this->email = null;
     }
 }

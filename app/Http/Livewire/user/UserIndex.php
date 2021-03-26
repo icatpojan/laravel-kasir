@@ -43,6 +43,18 @@ class UserIndex extends Component
         $user = User::find($id);
         $this->emit('getUser', $user);
     }
+    public function peringatan(){
+        $this->alert('success', 'Hello World!', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  true,
+            'showConfirmButton' =>  false,
+        ]);
+    }
     /**
      * Destroy User.
      *
@@ -54,21 +66,21 @@ class UserIndex extends Component
         if ($id) {
             $user = User::findOrFail($id);
             $user->delete();
-            session()->flash('message', 'User id ' . $id . ' was deleted! ');
+            $this->peringatan();
         }
     }
     /**
      * Display message store success
      */
-    public function handleStored($user)
+    public function handleStored()
     {
-        session()->flash('message', 'User ' . $user['name'] . ' was stored! ');
+        $this->peringatan();
     }
     /**
      * Display message update success
      */
     public function handleUpdate($user)
     {
-        session()->flash('message', 'User ' . $user['name'] . ' was updated! ');
+        $this->peringatan();
     }
 }

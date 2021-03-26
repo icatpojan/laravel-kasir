@@ -1,9 +1,4 @@
 <div>
-    @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
     @if ($statusUpdate)
         @livewire('user.user-update')
     @else
@@ -48,8 +43,8 @@
                             class="btn btn-sm btn-danger text-white">Delete</button>
                     </td>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-    {{ $users->links() }}
+                @endforeach
+            </tbody>
+        </table>
+        {{ $users->links() }}
 </div>

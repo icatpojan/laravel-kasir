@@ -1,4 +1,5 @@
 <div>
+    <h1>UPDATE</h1>
     <form wire:submit.prevent="update">
         <input type="hidden" wire:model="userId">
         <div class="form-group">

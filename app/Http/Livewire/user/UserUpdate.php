@@ -40,7 +40,7 @@ class UserUpdate extends Component
     {
         $this->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users|min:5',
+            'email' => 'required|email|min:5',
         ]);
         if ($this->userId) {
             $user = User::findOrFail($this->userId);

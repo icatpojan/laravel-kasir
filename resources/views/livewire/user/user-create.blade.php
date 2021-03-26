@@ -1,4 +1,5 @@
 <div>
+    <h1>CREATE</h1>
     <form wire:submit.prevent="store">
         <div class="form-group">
             <div class="form-row">

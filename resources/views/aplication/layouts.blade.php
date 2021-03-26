@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     @yield('css')
-    <livewire:styles>
+    @livewireStyles
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -46,9 +46,8 @@
             </div>
             @yield('content')
         </div>
+        <!-- /.content-wrapper -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- /.content-wrapper -->
-
             <!-- Control Sidebar -->
             <!-- Control sidebar content goes here -->
         </aside>
@@ -80,8 +79,10 @@
     <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
 
     <script src="{{ asset('dist/js/demo.js') }}"></script>
-    <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
-    <livewire:scripts>
+    {{-- <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script> --}}
+        @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <x-livewire-alert::scripts />
 </body>
 
 </html>

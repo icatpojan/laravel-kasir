@@ -4,7 +4,7 @@
     <li class="breadcrumb-item active">{{ $title }}</li>
 @endsection
 @section('css')
-    @include('aplication.css.datatable')
+    {{-- @include('aplication.css.datatable') --}}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -26,7 +26,8 @@
     @include('aplication.components.modal.user')
 @endsection
 
-{{-- @section('script')
-    @include('aplication.script.animasi')
-    @include('aplication.script.datatable')
-@endsection --}}
+@section('script')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- @include('aplication.script.animasi') --}}
+    {{-- @include('aplication.script.datatable') --}}
+@endsection

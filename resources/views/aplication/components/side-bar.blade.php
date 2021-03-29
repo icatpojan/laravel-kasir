@@ -11,9 +11,9 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <a href="{{route('home')}}" class="d-block">IRSYAD FAUZAN</a>
             </div>
             <div class="info">
-                <a href="{{route('home')}}" class="d-block">IRSYAD FAUZAN</a>
             </div>
         </div>
 
@@ -32,15 +32,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('product.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Widgets
-                            <span class="right badge badge-danger">New</span>
+                            Product
+                            <span class="right badge badge-danger">NEW</span>
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
@@ -107,7 +107,7 @@
                         <i class="nav-icon far fa-circle text-info"></i>
                         <p>Informational</p>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

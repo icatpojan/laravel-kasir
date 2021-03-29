@@ -3,20 +3,20 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\User;
+use App\Product;
 use Livewire\WithPagination;
 
-class Users extends Component
+class Products extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $name, $email, $password, $user_id;
+    public $name, $harga_beli, $harga_jual, $stock, $product_id;
     public $updateMode = false;
     public $paginate = 5;
     public function render()
     {
-        $users = User::latest()->paginate($this->paginate);
-        return view('livewire.users.users', compact('users'));
+        $products = Product::latest()->paginate($this->paginate);
+        return view('livewire.products.products', compact('products'));
     }
     public function peringatan($message)
     {
@@ -34,32 +34,34 @@ class Users extends Component
     private function resetInputFields()
     {
         $this->name = '';
-        $this->email = '';
+        $this->stock = '';
+        $this->harga_jual = '';
+        $this->harga_beli = '';
     }
 
     public function store()
     {
         $validatedDate = $this->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'harga_jual' => 'required',
+            'harga_beli' => 'required',
         ]);
-        $validatedDate['password'] = bcrypt('password');
-        User::create($validatedDate);
-
-        $this->peringatan('berhasil menambah user');
+        Product::create($validatedDate);
+        $this->peringatan('berhasil menambah product');
         $this->resetInputFields();
-
-        $this->emit('userStore'); // Close model to using to jquery
+        $this->emit('productStore'); // Close model to using to jquery
 
     }
 
     public function edit($id)
     {
         $this->updateMode = true;
-        $user = User::where('id', $id)->first();
-        $this->user_id = $id;
-        $this->name = $user->name;
-        $this->email = $user->email;
+        $product = Product::where('id', $id)->first();
+        $this->product_id = $id;
+        $this->name = $product->name;
+        $this->stock = $product->stock;
+        $this->harga_beli = $product->harga_beli;
+        $this->harga_jual = $product->harga_jual;
     }
 
     public function cancel()
@@ -72,17 +74,20 @@ class Users extends Component
     {
         $validatedDate = $this->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'harga_jual' => 'required',
+            'harga_beli' => 'required',
         ]);
 
-        if ($this->user_id) {
-            $user = User::find($this->user_id);
-            $user->update([
+        if ($this->product_id) {
+            $product = Product::find($this->product_id);
+            $product->update([
                 'name' => $this->name,
-                'email' => $this->email,
+                'stock' => $this->stock,
+                'harga_beli' => $this->harga_beli,
+                'harga_jual' => $this->harga_jual,
             ]);
             $this->updateMode = false;
-            $this->peringatan('berhasil mengupdate user');
+            $this->peringatan('berhasil mengupdate product');
             $this->resetInputFields();
         }
     }
@@ -90,8 +95,8 @@ class Users extends Component
     public function delete($id)
     {
         if ($id) {
-            User::where('id', $id)->delete();
-            $this->peringatan('berhasil menghapus user');
+            Product::where('id', $id)->delete();
+            $this->peringatan('berhasil menghapus product');
         }
     }
 }

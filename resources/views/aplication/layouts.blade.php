@@ -69,7 +69,6 @@
 
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    @yield('script')
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
@@ -80,7 +79,8 @@
 
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     {{-- <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script> --}}
-        @livewireScripts
+    @livewireScripts
+    @yield('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <x-livewire-alert::scripts />
 </body>

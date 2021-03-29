@@ -11,3 +11,4 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/user', 'UserController');
 });
+Route::view('users','livewire.home');

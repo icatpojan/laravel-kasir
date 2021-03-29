@@ -16,7 +16,7 @@
                         <h3 class="card-title">User CRUD</h3>
                     </div>
                     <div class="card-body">
-                        @livewire('user.user-index')
+                        @livewire('users')
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -27,7 +27,12 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript">
+        window.livewire.on('userStore', () => {
+            $('#exampleModal').modal('hide');
+        });
+    </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- @include('aplication.script.animasi') --}}
-    {{-- @include('aplication.script.datatable') --}}
+    @include('aplication.script.datatable')
 @endsection

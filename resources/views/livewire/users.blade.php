@@ -11,6 +11,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            @include('livewire.components.paginate')
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -37,6 +38,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-2">
+                {{ $users->links() }}
+            </div>
         </div>
     </div>
 </div>

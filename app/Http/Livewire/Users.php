@@ -4,16 +4,19 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\User;
+use Livewire\WithPagination;
 
 class Users extends Component
 {
-    public $users, $name, $email, $password, $user_id;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $name, $email, $password, $user_id;
     public $updateMode = false;
-
+    public $paginate = 5;
     public function render()
     {
-        $this->users = User::all();
-        return view('livewire.users');
+        $users = User::latest()->paginate($this->paginate);
+        return view('livewire.users', compact('users'));
     }
     public function peringatan($message)
     {

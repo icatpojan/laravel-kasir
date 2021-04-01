@@ -1,10 +1,10 @@
 @extends('aplication.layouts')
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
     <li class="breadcrumb-item active">{{ $title }}</li>
 @endsection
 @section('css')
-    {{-- @include('aplication.css.datatable') --}}
+    @include('aplication.css.datatable')
 @endsection
 @section('content')
     <div class="container-fluid">

@@ -1,10 +1,5 @@
 <div>
     @include('livewire.users.update')
-    @if (session()->has('message'))
-        <div class="alert alert-success" style="margin-top:30px;">x
-            {{ session('message') }}
-        </div>
-    @endif
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">@include('livewire.users.create')</h3>

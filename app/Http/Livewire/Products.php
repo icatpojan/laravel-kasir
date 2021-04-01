@@ -4,19 +4,21 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Product;
+use App\Model\Category;
 use Livewire\WithPagination;
 
 class Products extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $name, $harga_beli, $harga_jual, $stock, $product_id;
+    public $name, $harga_beli, $barcode, $harga_jual, $stock, $product_id, $category_id = 1;
     public $updateMode = false;
     public $paginate = 5;
     public function render()
     {
+        $Category = Category::all();
         $products = Product::latest()->paginate($this->paginate);
-        return view('livewire.products.products', compact('products'));
+        return view('livewire.products.products', compact('products', 'Category'));
     }
     public function peringatan($message)
     {
@@ -35,6 +37,8 @@ class Products extends Component
     {
         $this->name = '';
         $this->stock = '';
+        $this->barcode = '';
+        $this->category_id = '1';
         $this->harga_jual = '';
         $this->harga_beli = '';
     }
@@ -43,8 +47,10 @@ class Products extends Component
     {
         $validatedDate = $this->validate([
             'name' => 'required',
+            'barcode' => 'required|unique:products',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
+            'category_id' => 'required',
         ]);
         Product::create($validatedDate);
         $this->peringatan('berhasil menambah product');
@@ -59,6 +65,8 @@ class Products extends Component
         $product = Product::where('id', $id)->first();
         $this->product_id = $id;
         $this->name = $product->name;
+        $this->category_id = $product->category_id;
+        $this->barcode = $product->barcode;
         $this->stock = $product->stock;
         $this->harga_beli = $product->harga_beli;
         $this->harga_jual = $product->harga_jual;
@@ -74,15 +82,19 @@ class Products extends Component
     {
         $validatedDate = $this->validate([
             'name' => 'required',
+            'barcode' => 'required',
             'harga_jual' => 'required',
             'harga_beli' => 'required',
+            'category_id' => 'required',
         ]);
 
         if ($this->product_id) {
             $product = Product::find($this->product_id);
             $product->update([
                 'name' => $this->name,
+                'barcode' => $this->barcode,
                 'stock' => $this->stock,
+                'category_id' => $this->category_id,
                 'harga_beli' => $this->harga_beli,
                 'harga_jual' => $this->harga_jual,
             ]);
